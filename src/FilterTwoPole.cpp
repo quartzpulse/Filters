@@ -194,9 +194,10 @@ void FilterTwoPole::test() {
       inputValue = 150;
 
     osc.input(inputValue);
-
-    analogWrite(10,osc.output() ); // hardcoded the dial pin
-
+#if (defined(ESP32)|| defined(ESP8266))
+#elif
+    analogWrite(10,osc.output() ); // hardcoded the dial pin   
+#endif
     if( now > nextupdateTime ) {
       nextupdateTime += updateInterval;
 
